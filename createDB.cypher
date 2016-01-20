@@ -8,7 +8,7 @@ CREATE INDEX ON :Review(analyzed);
 USING PERIODIC COMMIT 5000
 LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/kvangundy/neo4j-happy-watermellon/master/movies.csv" AS line
 WITH line
-CREATE (m:Movie {name:line.title, movieId:toINT(line.movieId)});
+CREATE (m:Movie {name:line.title, movieId:toINT(line.movieId), viewerSentiment:0});
 
 USING PERIODIC COMMIT 5000
 LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/kvangundy/neo4j-happy-watermellon/master/movies.csv" AS line
