@@ -15,6 +15,8 @@ LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/kvangundy/neo4j-ha
 WITH line, split(line.genres, "|") as genres UNWIND(genres) as genre
 MERGE (:Tag {tag:genre});
 
+//this can take a while, make sure you have updated your JVM sizing, etc.
+
 USING PERIODIC COMMIT 5000
 LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/kvangundy/neo4j-happy-watermellon/master/movies.csv" AS line
 WITH line, toINT(line.movieId) as ids, split(line.genres, "|") as genres UNWIND(genres) as genre
